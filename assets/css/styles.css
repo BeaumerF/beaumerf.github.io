@@ -1,0 +1,341 @@
+/* Global Styles */
+body {
+    background-color: #181818;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+.spaced-div {
+    margin-bottom: 50px; /* Espacement entre chaque div */
+}
+
+
+header {
+    margin-bottom: 20px;
+}
+
+.logo-container {
+    position: relative;
+    width: 128px; /* Taille du logo */
+    height: 128px; /* Hauteur du conteneur pour gérer la transition */
+    margin-bottom: 10px; /* Espacement entre le logo et le texte */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto; /* Centre horizontalement le conteneur */
+}
+
+.logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    transition: opacity 0.42s ease-in-out; /* Transition douce sur l'opacité */
+}
+
+.logo-hover {
+    opacity: 0; /* Le logo2 est masqué par défaut */
+}
+
+.logo-container:hover .logo-default {
+    opacity: 0; /* Masquer le logo1 lors du survol */
+}
+
+.logo-container:hover .logo-hover {
+    opacity: 1; /* Afficher le logo2 lors du survol */
+}
+
+header h1 {
+    font-size: 1rem;
+    margin-bottom: 0px;
+    color: #BABABA;
+}
+
+header h2 {
+    font-size: 1rem;
+    font-weight: normal;
+    color: #BABABA;
+}
+
+main h1 {
+    margin: 0px;
+    padding: 0px;
+}
+
+main h1.A{
+    color: #ffb902ff;
+}
+
+main h1.B{
+    color: #d22d23ff;
+}
+
+.image-row {
+    display: flex;            /* Utilise flexbox pour aligner les images en ligne */
+    justify-content: center;  /* Centre les images horizontalement */
+    gap: 20px;                /* Espace entre les images */
+    margin-top: -5px;         /* Espace au-dessus de la ligne d'images */
+}
+
+.btn {
+    position: relative;         /* Positionnement relatif pour gérer l'empilement des images */
+    border: none;               /* Supprime les bordures par défaut du bouton */
+    background: none;           /* Supprime le fond par défaut du bouton */
+    cursor: pointer;            /* Change le curseur en pointeur au survol */
+    width: 100px;                /* Largeur du bouton */
+    height: 100px;               /* Hauteur du bouton */
+    overflow: hidden;           /* Assure que les images ne débordent pas du bouton */
+    margin: 0 10px;             /* Ajoute un espacement horizontal entre les boutons */
+}
+
+.social-image {
+    width: 100px;             /* Largeur des images (ajustez selon vos besoins) */
+    height: 100px;             /* Hauteur auto pour maintenir le ratio d'aspect */
+    border-radius: 10px;      /* Coins arrondis pour les images (facultatif) */
+}
+
+
+a {
+    color: #ffb902ff; /* Affiche les liens en bleu */
+    text-decoration: none; /* Supprime le soulignement par défaut */
+}
+
+a:hover {
+    text-decoration: underline; /* Ajoute un soulignement au survol pour une meilleure accessibilité */
+}
+
+p {
+    font-size: 1rem;
+    margin: 5px 0;
+    color: #BABABA;
+}
+
+.email-icon {
+    display: inline; /* Affiche les éléments en ligne */
+}
+
+
+
+main {
+    margin-top: 20px; /* Espacement entre chaque div */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+
+
+/* Style pour le conteneur principal */
+.content-box {
+    background-color: #292929;
+    border-radius: 42px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 800px;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+    margin-bottom: 0; /* Suppression de la marge inférieure */
+}
+
+/* Style pour le conteneur de vidéo */
+.video-content {
+    max-width: 100%; /* Assure que le conteneur n'excède pas la largeur disponible */
+    height: 100%; /* Remplit la hauteur disponible du conteneur parent */
+    display: flex; /* Utilise flexbox pour centrer la vidéo si nécessaire */
+    justify-content: center; /* Centre la vidéo horizontalement */
+    align-items: flex-end; /* Aligne la vidéo au bas du conteneur */
+}
+
+/* Styles pour la vidéo */
+.video-content video {
+    width: 75%; /* Adapte la vidéo à la largeur du conteneur */
+    height: 100%; /* Adapte la hauteur de la vidéo pour remplir le conteneur */
+    object-fit: cover; /* Couvre l'intégralité du conteneur tout en conservant le ratio d'aspect */
+    /* Optionnel: arrondir les coins de la vidéo si souhaité */
+    /* border-radius: 15px; */
+}
+
+/* Style pour l'overlay */
+.overlay {
+    position: absolute;
+    top: 0%;
+    pointer-events: none; /* Permet d'interagir avec la vidéo sous-jacente */
+}
+
+/* Style pour l'image dans l'overlay */
+.overlay img {
+    display: block;
+    max-width: 100%; /* Assure que l'image ne dépasse pas la largeur de l'overlay */
+    max-height: 100%; /* Assure que l'image ne dépasse pas la hauteur de l'overlay */
+}
+
+
+.swiper-slide {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 colonnes égales */
+  align-items: center; /* aligne verticalement au centre */
+  gap: 20px;
+}
+
+
+
+:root {
+  --swiper-navigation-color: #ffb902ff;
+  --swiper-pagination-color: #d22d23ff;
+}
+
+.swiper-slide > img {
+  /* max-width: 300px;
+  max-height: 300px;
+  width: 100%;
+  height: auto;
+  object-fit: cover; */
+}
+
+.swiper-slide > .text-content {
+  grid-column: 2; /* colonne 2 */
+}
+
+.text-content, .video-content {
+    flex: 1;
+}
+
+.text-content {
+    margin-bottom: 20px;
+}
+
+video {
+    width: 100%;
+    height: auto;
+}
+
+.triangle {
+    position: relative;
+    width: 0;
+    height: 0;
+    border-left: 42px solid #181818;
+    border-right: 42px solid #181818;
+    border-top: 35px solid #292929;
+    margin: 0 auto;
+}
+
+/* Responsive Styles */
+@media (min-width: 768px) {
+    .content-box {
+        flex-direction: row;
+    }
+    
+    .text-content {
+        margin-right: 20px;
+        margin-bottom: 0;
+    }
+
+}
+
+@media (max-width: 768px) {
+    /* Style pour le conteneur de vidéo */
+    /* Style pour la vidéo */
+    .triangle {
+        border-top: 0px solid #181818;
+    }
+
+
+}
+    /*
+@media (max-width: 400px) {
+
+.video-content video {
+    position: absolute;
+    top: 3%;
+    width: 95%;
+    height: 100%;
+    object-fit: cover; 
+    
+    border-top-left-radius: 40px; 
+    border-top-right-radius: 40px;
+}
+*/
+
+footer {
+    background-color: #180505;  /* Couleur de fond */
+    padding: 10px 0;            /* Padding autour du contenu du footer */
+    width: 100%;                /* Le footer prend toute la largeur de l'écran */
+}
+
+.footer-content {
+    display: flex;              /* Utilisation de flexbox pour aligner les éléments en ligne */
+    justify-content: space-between; /* Espacement égal entre les éléments */
+    align-items: center;        /* Centre les éléments verticalement */
+    width: 100%;                /* Assure que le contenu prend toute la largeur */
+    flex-wrap: wrap;            /* Permet de passer à la ligne si nécessaire sur petits écrans */
+    box-sizing: border-box;     /* Inclut le padding dans la largeur totale */
+}
+
+.footer-item {
+    flex: 1;                    /* Chaque item prend une part égale de l'espace disponible */
+    text-align: center;         /* Centre le texte dans chaque item */
+    color: white;               /* Couleur du texte en blanc */
+    padding: 10px;              /* Padding interne */
+}
+
+.footer-item a {
+    color: #2EABFF;
+    text-decoration: none;      /* Enlève le soulignement des liens */
+}
+
+.footer-item a:hover {
+    text-decoration: underline; /* Ajoute un soulignement au survol */
+}
+
+.image-row {
+    display: flex;              /* Les images restent alignées en ligne */
+    justify-content: center;    /* Centre les images à l'intérieur de l'élément */
+    gap: 10px;                  /* Espacement entre les boutons */
+}
+
+.btnfooter {
+    position: relative;         /* Positionnement relatif pour gérer l'empilement des images */
+    padding: 0;                 /* Supprime le padding interne */
+    border: none;               /* Supprime les bordures par défaut du bouton */
+    background: none;           /* Supprime le fond par défaut du bouton */
+    cursor: pointer;            /* Change le curseur en pointeur au survol */
+    width: 40px;                /* Largeur du bouton */
+    height: 40px;               /* Hauteur du bouton */
+    overflow: hidden;           /* Assure que les images ne débordent pas du bouton */
+}
+
+footer .social-image, footer .social-image.color {
+    width: 100%;                /* Largeur de chaque image */
+    height: 100%;               /* Assure que l'image occupe toute la taille du bouton */
+    transition: opacity 0.42s ease-in-out; /* Transition douce sur l'opacité */
+    position: absolute;         /* Positionne les images en superposition */
+    top: 0;
+    left: 0;
+}
+
+.social-image.color {
+    opacity: 0;                 /* Masque l'image colorée par défaut */
+}
+
+.btnfooter:hover .social-image {
+    opacity: 0;                 /* Masque l'image normale au survol */
+}
+
+.btnfooter:hover .social-image.color {
+    opacity: 1;                 /* Affiche l'image colorée au survol */
+}
+
