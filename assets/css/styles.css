@@ -198,13 +198,6 @@ main {
   --swiper-pagination-color: #d22d23ff;
 }
 
-.swiper-slide > img {
-  /* max-width: 300px;
-  max-height: 300px;
-  width: 100%;
-  height: auto;
-  object-fit: cover; */
-}
 
 .swiper-slide > .text-content {
   grid-column: 2; /* colonne 2 */
