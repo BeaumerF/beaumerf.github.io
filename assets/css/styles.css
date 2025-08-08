@@ -249,6 +249,25 @@ video {
 
 
 }
+
+                       @media (min-width: 769px) {
+  .swiper-fallback {
+    display: none;
+  }
+}
+
+
+@media (max-width: 780px) {
+  .swiper {
+    display: none !important;
+  }
+
+  .swiper-fallback {
+    display: block !important;
+    padding: 1rem;
+  }
+}
+
     /*
 @media (max-width: 400px) {
 
