@@ -124,27 +124,47 @@
         prevEl: '.swiper-button-prev',
       },
     });
+
+  function toggleSwiper() {
+    const swiper = document.querySelector('.swiper');
+    const fallback = document.querySelector('.swiper-fallback');
+    if(window.innerWidth >= 769) {
+      swiper.style.display = 'block';
+      fallback.style.display = 'none';
+    } else {
+      swiper.style.display = 'none';
+      fallback.style.display = 'block';
+    }
+  }
+
+  // Au chargement
+  window.addEventListener('load', toggleSwiper);
+  // Au redimensionnement
+  window.addEventListener('resize', toggleSwiper);
+
   </script>
         </div>
 
 
         <div class="swiper-fallback">
   <div class="fallback-item">
-    <img src="assets/img/Mobile.png" alt="Mobile Games" style="max-width: 100%; max-height: 300px;">
+    <img src="assets/img/Mobile.png" alt="Mobile Games" style="max-width: 100%; max-height: 200px;">
     <h1 class="C">MOBILE GAMES</h1>
     <a href="https://play.google.com/store/apps/dev?id=6017513963431571693" target="_blank" rel="noopener noreferrer">
       <img src="assets/img/ANDROID_.png" alt="Google Play Store">
     </a>
   </div>
         <div class="spaced-div"></div>
+        <div class="spaced-div"></div>
   <div class="fallback-item">
-    <img src="assets/img/cpgame.png" alt="PC Games" style="max-width: 100%; max-height: 400px;">
+    <img src="assets/img/cpgame.png" alt="PC Games" style="max-width: 100%; max-height: 200px;">
     <h1 class="C">PC GAMES</h1>
     <img src="assets/img/STEAM.png" alt="">
   </div>
         <div class="spaced-div"></div>
+        <div class="spaced-div"></div>
   <div class="fallback-item">
-    <img src="assets/img/assets.png" alt="Assets For Games" style="max-width: 100%; max-height: 250px;">
+    <img src="assets/img/assets.png" alt="Assets For Games" style="max-width: 100%; max-height: 150px;">
     <h1 class="C">ASSETS FOR GAMES</h1>
     <img src="assets/img/UNITY.png" alt="">
   </div>

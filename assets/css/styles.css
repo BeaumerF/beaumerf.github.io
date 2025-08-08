@@ -266,6 +266,10 @@ video {
     display: block !important;
     padding: 1rem;
   }
+
+  main h1.C {
+    font-size: 1.5rem;
+}
 }
 
     /*
