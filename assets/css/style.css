@@ -277,7 +277,6 @@ article.active {
   padding-top: 45px;
   border-radius: 14px;
   box-shadow: var(--shadow-2);
-  cursor: pointer;
   z-index: 1;
 }
 
@@ -476,6 +475,9 @@ main {
   font-size: var(--fs-8);
   padding: 20px 7px;
   transition: color var(--transition-1);
+  display: flex;
+  align-items: center; /* Centre verticalement l'icône et le texte */
+  gap: 8px; /* Espace entre l'icône et le texte */
 }
 
 .navbar-link:hover,
@@ -495,7 +497,7 @@ main {
 
 .about-text {
   color: var(--light-gray);
-  font-size: var(--fs-6);
+  font-size: var(--fs-4);
   font-weight: var(--fw-300);
   line-height: 1.6;
 }
@@ -1381,7 +1383,10 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .navbar-list { gap: 20px; }
 
-  .navbar-link { --fs-8: 14px; }
+  .navbar-link { --fs-8: 14px; 
+  display: flex;
+  align-items: center; /* Centre verticalement l'icône et le texte */
+  gap: 8px; /* Espace entre l'icône et le texte */}
 
 
 
