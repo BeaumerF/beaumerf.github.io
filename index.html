@@ -42,13 +42,13 @@
       <div class="sidebar-info">
 
         <figure class="avatar-box">
-          <img src="./assets/images/my-avatar.png" alt="François Beaumer" width="80">
+          <img src="./assets/images/my-avatar.jpg" alt="François Beaumer" width="80">
         </figure>
 
         <div class="info-content">
           <h1 class="name" title="François Beaumer">François Beaumer</h1>
 
-          <p class="title">Game developer</p>
+          <p class="title" style="font-size: 20px;">Game developer</p>
         </div>
 
         <button class="info_more-btn" data-sidebar-btn>
@@ -98,12 +98,11 @@
             <div class="icon-box">
               <ion-icon name="calendar-outline"></ion-icon>
             </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Birthday</p>
-
-              <time datetime="1982-06-23">December 02, 1992</time>
-            </div>
+<div class="contact-info">
+  <p class="contact-title">Birthday</p>
+  <time datetime="1996-12-02" class="birthday">December 02, 1996</time>
+  <span id="age" class="birthday"></span>
+</div>
 
           </li>
 
@@ -218,9 +217,9 @@ Creating games is more than my job — it's my craft. I love working on every st
             <li class="testimonials-item">
               <div class="content-card" data-testimonials-item>
 
-                <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/avatar-1.png" alt="Sport" width="60" data-testimonials-avatar>
-                </figure>
+<figure class="testimonials-avatar-box">
+  <ion-icon name="football-outline" style="font-size: 50px;" ></ion-icon>
+</figure>
 
                 <h4 class="h4 testimonials-item-title" data-testimonials-title>Sport</h4>
 
@@ -236,9 +235,9 @@ Creating games is more than my job — it's my craft. I love working on every st
             <li class="testimonials-item">
               <div class="content-card" data-testimonials-item>
 
-                <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/avatar-2.png" alt="New Technologies" width="60" data-testimonials-avatar>
-                </figure>
+<figure class="testimonials-avatar-box">
+  <ion-icon name="code-slash-outline" style="font-size: 50px;" ></ion-icon>
+</figure>
 
                 <h4 class="h4 testimonials-item-title" data-testimonials-title>New Technologies</h4>
 
@@ -254,9 +253,9 @@ Creating games is more than my job — it's my craft. I love working on every st
             <li class="testimonials-item">
               <div class="content-card" data-testimonials-item>
 
-                <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/avatar-3.png" alt="Travel" width="60" data-testimonials-avatar>
-                </figure>
+<figure class="testimonials-avatar-box">
+  <ion-icon name="airplane-outline" style="font-size: 50px;" ></ion-icon>
+</figure>
 
                 <h4 class="h4 testimonials-item-title" data-testimonials-title>Travel</h4>
 
@@ -271,15 +270,15 @@ Creating games is more than my job — it's my craft. I love working on every st
             <li class="testimonials-item">
               <div class="content-card" data-testimonials-item>
 
-                <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/avatar-4.png" alt="Multimedia" width="60" data-testimonials-avatar>
-                </figure>
+<figure class="testimonials-avatar-box">
+  <ion-icon name="image-outline" style="font-size: 50px;" ></ion-icon>
+</figure>
 
                 <h4 class="h4 testimonials-item-title" data-testimonials-title>Multimedia</h4>
 
                 <div class="testimonials-text" data-testimonials-text>
                   <p>
-In all its forms : animes, series, films, music...
+In all its forms: animes, series, films, music, photography, multimedia and beyond...
                   </p>
                 </div>
 
@@ -368,41 +367,48 @@ In all its forms : animes, series, films, music...
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">University school of the arts</h4>
+              <h4 class="h4 timeline-item-title">EPITECH - European Institute of Technology</h4>
 
-              <span>2007 — 2008</span>
+              <span>2015 — 2020</span>
 
               <p class="timeline-text">
-                Nemo enims ipsam voluptatem, blanditiis praesentium voluptum delenit atque corrupti, quos dolores et
-                quas molestias
-                exceptur.
+Master’s Degree in computer science & software engineering
               </p>
 
             </li>
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">New york academy of art</h4>
+              <h4 class="h4 timeline-item-title">UHA - University of Haute-Alsace </h4>
 
-              <span>2006 — 2007</span>
+              <span>2019-2020</span>
 
               <p class="timeline-text">
-                Ratione voluptatem sequi nesciunt, facere quisquams facere menda ossimus, omnis voluptas assumenda est
-                omnis..
+                Master's Degree in project Management (double Cursus)
               </p>
 
             </li>
 
             <li class="timeline-item">
 
-              <h4 class="h4 timeline-item-title">High school of art and design</h4>
+              <h4 class="h4 timeline-item-title">KMU - Keimyung University</h4>
 
-              <span>2002 — 2004</span>
+              <span>2018-2019</span>
 
               <p class="timeline-text">
-                Duis aute irure dolor in reprehenderit in voluptate, quila voluptas mag odit aut fugit, sed consequuntur
-                magni dolores
-                eos.
+                Year of specialization in video game development (university exchange)
+              </p>
+
+            </li>
+
+                        <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">HEC - Business School</h4>
+
+              <span>2018</span>
+
+              <p class="timeline-text">
+                Certificate in entrepreneurship & marketing
               </p>
 
             </li>
@@ -415,7 +421,7 @@ In all its forms : animes, series, films, music...
 
           <div class="title-wrapper">
             <div class="icon-box">
-              <ion-icon name="book-outline"></ion-icon>
+              <ion-icon name="desktop-outline"></ion-icon>
             </div>
 
             <h3 class="h3">Experience</h3>
@@ -789,6 +795,30 @@ In all its forms : animes, series, films, music...
     - custom js link
   -->
   <script src="./assets/js/script.js"></script>
+
+<script>
+  function calculateAge(birthDate) {
+    const today = new Date();
+    const birth = new Date(birthDate);
+    let age = today.getFullYear() - birth.getFullYear();
+    const monthDiff = today.getMonth() - birth.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+      age--;
+    }
+    return age;
+  }
+
+  const birthDate = '1996-12-02';
+  const age = calculateAge(birthDate);
+  document.getElementById('age').textContent = ` (${age} years old)`;
+</script>
+
+<style>
+  .birthday {
+  color: var(--white-2);
+  font-size: var(--fs-8);
+  }
+</style>
 
   <!--
     - ionicon link
