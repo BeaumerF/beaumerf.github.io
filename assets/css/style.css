@@ -2023,3 +2023,17 @@ ul.cloud a:hover::before {
   height: auto;
   border-radius: 4px;
 }
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9; /* 1920:1080 */
+  overflow: hidden;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Remplit et recadre */
+  object-position: center; /* Centre l’image */
+  display: block;
+}
