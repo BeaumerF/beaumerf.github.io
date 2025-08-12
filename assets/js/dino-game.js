@@ -21,26 +21,28 @@ function drawDino() {
 }
 
 function drawObstacles() {
-    ctx.fillStyle = "hsl(175, 70%, 55%)";
     obstacles.forEach(obs => {
         // Dessin de l'obstacle
+        ctx.fillStyle = "hsl(175, 70%, 55%)";
         ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
 
-        // Dessin de la date en blanc sous l'obstacle
+        // Dessin de la date en blanc au-dessus de l'obstacle
         ctx.fillStyle = "white";
         ctx.font = "16px Arial";
         ctx.textAlign = "center";
 
-        // Position du texte : centré horizontalement, et 5px sous le bas de l'obstacle
+        // Position du texte : centré horizontalement, et 5px au-dessus de l'obstacle
         const textX = obs.x + obs.width / 2;
-        const textY = obs.y + obs.height + 18;
+        const textY = obs.y - 5;
 
         ctx.fillText(obs.year, textX, textY);
     });
 }
 
 
+
 function spawnObstacle() {
+if (currentYear > new Date().getFullYear()) return;
     let height = Math.random() * 30 + 20;
 
     obstacles.push({
