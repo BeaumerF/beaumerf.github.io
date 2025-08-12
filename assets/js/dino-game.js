@@ -4,9 +4,9 @@ let currentYear = 2015;
 let dino, obstacles, gameSpeed, score, isGameOver, obstacleTimer, gameStarted;
 
 function resetGame() {
-dino = { x: 50, y: 150, width: 40, height: 40, dy: 0, jumpPower: -8, gravity: 0.4, grounded: true };
+dino = { x: 50, y: 150, width: 40, height: 40, dy: 0, jumpPower: -8, gravity: 0.3, grounded: true };
     obstacles = [];
-    gameSpeed = 4;
+    gameSpeed = 3;
     score = 0;
     isGameOver = false;
     obstacleTimer = 0;
@@ -22,27 +22,48 @@ function drawDino() {
 
 function drawObstacles() {
     obstacles.forEach(obs => {
-        // Dessin de l'obstacle
         ctx.fillStyle = "hsl(175, 70%, 55%)";
         ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
 
-        // Dessin de la date en blanc au-dessus de l'obstacle
-        ctx.fillStyle = "white";
-        ctx.font = "16px Arial";
-        ctx.textAlign = "center";
-
-        // Position du texte : centré horizontalement, et 5px au-dessus de l'obstacle
         const textX = obs.x + obs.width / 2;
         const textY = obs.y - 5;
 
-        ctx.fillText(obs.year, textX, textY);
+        // Dessin de l'image (si tu l'as ajoutée)
+        // ctx.drawImage(...);
+
+        // Déterminer le label
+        let label = "";
+        if (obs.year >= 2015 && obs.year <= 2019) {
+            label = "Student";
+        } else if (obs.year >= 2020 && obs.year <= 2022) {
+            label = "Ubisoft";
+        } else if (obs.year >= 2023 && obs.year <= 2024) {
+            label = "Voodoo";
+        } else if (obs.year === 2025) {
+            label = "Kawak";
+        }
+
+        // Dessiner le label
+        if (label) {
+            ctx.fillStyle = "white";
+            ctx.font = "14px Arial";
+            ctx.textAlign = "center";
+            ctx.fillText(label, textX, textY - 20);
+        }
+
+        // Dessiner la date
+        ctx.fillStyle = "white";
+        ctx.font = "16px Arial";
+        ctx.textAlign = "center";
+        if (obs.year <= new Date().getFullYear()) 
+            ctx.fillText(obs.year, textX, textY);
     });
 }
 
 
 
 function spawnObstacle() {
-if (currentYear > new Date().getFullYear()) return;
+
     let height = Math.random() * 30 + 20;
 
     obstacles.push({
@@ -128,7 +149,7 @@ function gameLoop() {
         ctx.fillStyle = "white";
         ctx.font = "24px Arial";
         ctx.textAlign = "center";
-        ctx.fillText("Appuie sur Espace pour commencer", canvas.width / 2, canvas.height / 2);
+        ctx.fillText("Press Space or tap the screen to start", canvas.width / 2, canvas.height / 2);
     } else {
         ctx.fillStyle = "red";
         ctx.font = "40px Arial";
@@ -137,7 +158,7 @@ function gameLoop() {
 
         ctx.fillStyle = "white";
         ctx.font = "20px Arial";
-        ctx.fillText("Appuie sur Espace ou touche l'écran pour rejouer", canvas.width / 2, canvas.height / 2 + 40);
+        ctx.fillText("Press Space or tap the screen to restart", canvas.width / 2, canvas.height / 2 + 40);
     }
 }
 
