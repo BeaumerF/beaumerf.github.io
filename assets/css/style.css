@@ -1897,3 +1897,61 @@ textarea.form-input::-webkit-resizer { display: none; }
 .title:hover {
   color: var(--orange-yellow-crayola);
 }
+
+.timeline-item-title a {
+  text-decoration: underline;
+  color: inherit; /* Hérite de la couleur du texte parent */
+}
+
+.timeline-item-title a:hover {
+  text-decoration: none; /* Supprime le soulignement */
+}
+
+ul.cloud {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  line-height: 2.75rem;
+  width: auto;
+}
+
+ul.cloud a {
+  /*   
+  Not supported by any browser at the moment :(
+  --size: attr(data-weight number); 
+  */
+  --size: 4;
+  --color: --orange-yellow-crayola;
+  color: var(--color);
+  font-size: calc(var(--size) * 0.25rem + 0.5rem);
+  display: block;
+  padding: 0.125rem 0.25rem;
+  position: relative;
+  text-decoration: none;
+  /* 
+  For different tones of a single color
+  opacity: calc((15 - (9 - var(--size))) / 15); 
+  */
+}
+
+ul.cloud a[data-weight="1"] { --size: 1; --color: var(--orange-yellow-crayola);}
+ul.cloud a[data-weight="2"] { --size: 2; --color: var(--white-1); }
+ul.cloud a[data-weight="3"] { --size: 3; --color: var(--orange-yellow-crayola);}
+ul.cloud a[data-weight="4"] { --size: 4; --color: var(--white-1); }
+ul.cloud a[data-weight="5"] { --size: 6; --color: var(--orange-yellow-crayola);}
+ul.cloud a[data-weight="6"] { --size: 8; --color: var(--white-1); }
+ul.cloud a[data-weight="7"] { --size: 10; --color: var(--orange-yellow-crayola);}
+ul.cloud a[data-weight="8"] { --size: 13; --color: var(--white-1); }
+ul.cloud a[data-weight="9"] { --size: 16; --color: var(--orange-yellow-crayola);}
+
+
+
+
+
+ul.cloud a:focus::before,
+ul.cloud a:hover::before {
+  width: 100%;
+}
