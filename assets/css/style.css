@@ -1983,3 +1983,43 @@ ul.cloud a:hover::before {
     font-size: 24px;
     user-select: none;
   }
+  #obstacles-container {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px;
+}
+
+.obstacle {
+  text-align: center;
+  width: 120px;
+}
+
+.obstacle-box {
+  width: 100px;
+  height: 100px;
+  background: #ccc;
+  line-height: 100px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+.obstacle-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.obstacle-date {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.obstacle-image {
+  width: 60px;
+  height: auto;
+  border-radius: 4px;
+}
