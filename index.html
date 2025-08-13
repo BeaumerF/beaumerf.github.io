@@ -16,7 +16,7 @@
     - custom css link
   -->
   <link rel="stylesheet" href="./assets/css/style.css">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <!--
     - google font link
   -->
@@ -216,9 +216,11 @@ Creating games is more than my job — it's my craft. I enjoy working on every s
 
           <h3 class="h3 testimonials-title">Interests</h3>
 
-          <ul class="testimonials-list has-scrollbar">
 
-            <li class="testimonials-item">
+          <div class="swiper testimonials-swiper">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+<li class="testimonials-item">
               <div class="content-card" data-testimonials-item>
 
 <figure class="testimonials-avatar-box">
@@ -235,8 +237,9 @@ Creating games is more than my job — it's my craft. I enjoy working on every s
 
               </div>
             </li>
-
-            <li class="testimonials-item">
+    </div>
+    <div class="swiper-slide">
+  <li class="testimonials-item">
               <div class="content-card" data-testimonials-item>
 
 <figure class="testimonials-avatar-box">
@@ -253,8 +256,9 @@ Creating games is more than my job — it's my craft. I enjoy working on every s
 
               </div>
             </li>
-
-            <li class="testimonials-item">
+    </div>
+        <div class="swiper-slide">
+              <li class="testimonials-item">
               <div class="content-card" data-testimonials-item>
 
 <figure class="testimonials-avatar-box">
@@ -270,7 +274,8 @@ Creating games is more than my job — it's my craft. I enjoy working on every s
 
               </div>
             </li>
-
+    </div>
+    <div class="swiper-slide">
             <li class="testimonials-item">
               <div class="content-card" data-testimonials-item>
 
@@ -285,14 +290,13 @@ Creating games is more than my job — it's my craft. I enjoy working on every s
 In all its forms : animes, series, films, music, photography and more...
                   </p>
                 </div>
-
               </div>
             </li>
-
-          </ul>
-
-        </section>
-
+    </div>
+  </div>
+  
+  <!-- Pagination (points) -->
+  <div class="swiper-pagination"></div>
 
         <!--
           - testimonials modal
@@ -316,17 +320,13 @@ In all its forms : animes, series, films, music, photography and more...
 
             <div class="modal-content">
 
-              <h4 class="h3 modal-title" data-modal-title>Sport</h4>
+              <h4 class="h3 modal-title" data-modal-title>Modal</h4>
 
-              <time datetime="2021-06-14">14 June, 2021</time>
+              <time datetime="">date</time>
 
               <div data-modal-text>
                 <p>
-                  Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
-                  lot of experience
-                  and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
-                  consectetur adipiscing
-                  elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
+    
                 </p>
               </div>
 
@@ -559,7 +559,7 @@ Master’s Degree in computer science & software engineering
           <ul class="skills-list content-card">
 
 <ul class="cloud" role="navigation" aria-label="Soft skills tag cloud">
-  <li><a data-weight="9">Creativity</a></li>
+  <li><a data-weight="7">Creativity</a></li>
   <li><a data-weight="2">Servant</a></li>
   <li><a data-weight="2">Leadership</a></li>
   <li><a data-weight="7">Organization</a></li>
@@ -1138,9 +1138,11 @@ Master’s Degree in computer science & software engineering
     - custom js link
   -->
   <script src="./assets/js/script.js"></script>
-    <script src="./assets/js/dino-game.js"></script>
+  <script src="./assets/js/dino-game.js"></script>
   <script src="https://unpkg.com/wordcloud@1.2.2/src/wordcloud2.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
+  
 <script>
   function calculateAge(birthDate) {
     const today = new Date();
@@ -1157,6 +1159,26 @@ Master’s Degree in computer science & software engineering
   const age = calculateAge(birthDate);
   document.getElementById('age').textContent = ` (${age} years old)`;
 
+new Swiper(".testimonials-swiper", {
+  loop: true,
+  autoplay: {
+    delay: 2000,
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  breakpoints: {
+    768: {
+      slidesPerView: 2,
+      spaceBetween: 20
+    }
+  }
+});
 </script>
 
 <style>
