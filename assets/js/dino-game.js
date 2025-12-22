@@ -1,18 +1,37 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
+
+// Constants to ensure consistency
+const GAME_SPEED_BASE = 3;
+const GRAVITY = 0.4; // Unified gravity
+const JUMP_POWER = -8;
+const OBSTACLE_INTERVAL_FRAMES = 90; // Approx 1.5 seconds at 60fps base
+
+// Variables
 let currentYear = 2015;
 let dino, obstacles, gameSpeed, score, isGameOver, obstacleTimer, gameStarted;
+let lastTime = 0;
 
 function resetGame() {
-dino = { x: 50, y: 150, width: 40, height: 40, dy: 0, jumpPower: -8, gravity: 0.3, grounded: true };
+    dino = { 
+        x: 50, 
+        y: 150, 
+        width: 40, 
+        height: 40, 
+        dy: 0, 
+        jumpPower: JUMP_POWER, 
+        gravity: GRAVITY, 
+        grounded: true 
+    };
     obstacles = [];
-    gameSpeed = 3;
+    gameSpeed = GAME_SPEED_BASE;
     score = 0;
     isGameOver = false;
     obstacleTimer = 0;
     gameStarted = true;
-    currentYear = 2015; // Réinitialisation
-    gameLoop();
+    currentYear = 2015;
+    lastTime = 0;
+    requestAnimationFrame(gameLoop);
 }
 
 function drawDino() {
@@ -21,51 +40,43 @@ function drawDino() {
 }
 
 function drawObstacles() {
+    // Optimization: Batch drawing similar elements to minimize state changes
+    
+    // 1. Draw all obstacle rectangles
+    ctx.fillStyle = "hsl(175, 70%, 55%)";
     obstacles.forEach(obs => {
-        ctx.fillStyle = "hsl(175, 70%, 55%)";
         ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+    });
 
+    // 2. Draw all text elements
+    ctx.textAlign = "center";
+    obstacles.forEach(obs => {
         const textX = obs.x + obs.width / 2;
         const textY = obs.y - 5;
 
-        // Dessin de l'image (si tu l'as ajoutée)
-        // ctx.drawImage(...);
-
-        // Déterminer le label
+        // Determine label
         let label = "";
-        if (obs.year >= 2015 && obs.year <= 2019) {
-            label = "Student";
-        } else if (obs.year >= 2020 && obs.year <= 2022) {
-            label = "Ubisoft";
-        } else if (obs.year >= 2023 && obs.year <= 2024) {
-            label = "Voodoo";
-        } else if (obs.year === 2025) {
-            label = "Kawak";
-        }
+        if (obs.year >= 2015 && obs.year <= 2019) label = "Student";
+        else if (obs.year >= 2020 && obs.year <= 2022) label = "Ubisoft";
+        else if (obs.year >= 2023 && obs.year <= 2024) label = "Voodoo";
+        else if (obs.year === 2025) label = "Kawak";
 
-        // Dessiner le label
         if (label) {
             ctx.fillStyle = "white";
             ctx.font = "14px Arial";
-            ctx.textAlign = "center";
             ctx.fillText(label, textX, textY - 20);
         }
 
-        // Dessiner la date
         ctx.fillStyle = "white";
         ctx.font = "16px Arial";
-        ctx.textAlign = "center";
-        if (obs.year <= new Date().getFullYear()) 
+        if (obs.year <= new Date().getFullYear()) {
             ctx.fillText(obs.year, textX, textY);
+        }
     });
 }
 
-
-
 function spawnObstacle() {
-
     let height = Math.random() * 30 + 20;
-
     obstacles.push({
         x: canvas.width,
         y: canvas.height - height - 10,
@@ -73,17 +84,16 @@ function spawnObstacle() {
         height: height,
         year: currentYear
     });
-
-    currentYear++; // Incrémente l'année pour le prochain obstacle
+    currentYear++;
 }
 
-function updateObstacles() {
-    obstacles.forEach(obs => obs.x -= gameSpeed);
+function updateObstacles(timeScale) {
+    obstacles.forEach(obs => obs.x -= gameSpeed * timeScale);
 
-if (obstacles.length > 0 && obstacles[0] && obstacles[0].x < -obstacles[0].width) {
-    obstacles.shift();
-    score++;
-}
+    if (obstacles.length > 0 && obstacles[0] && obstacles[0].x < -obstacles[0].width) {
+        obstacles.shift();
+        score++;
+    }
 }
 
 function checkCollision() {
@@ -94,21 +104,24 @@ function checkCollision() {
             dino.y < obs.y + obs.height &&
             dino.y + dino.height > obs.y
         ) {
-            dino = { x: 50, y: 150, width: 40, height: 40, dy: 0, jumpPower: -8, gravity: 0.4, grounded: true };
+            // Consistency logic: Do not recreate the object if not needed, or use constants
+            dino.dy = 0;
+            // dino object will be reset in resetGame anyway
             isGameOver = true;
             gameStarted = false;
         }
     }
 }
 
-function updateDino() {
-    dino.y += dino.dy;
+function updateDino(timeScale) {
+    dino.y += dino.dy * timeScale;
+    
     if (dino.y + dino.height >= canvas.height - 10) {
         dino.y = canvas.height - dino.height - 10;
         dino.dy = 0;
         dino.grounded = true;
     } else {
-        dino.dy += dino.gravity;
+        dino.dy += dino.gravity * timeScale;
     }
 }
 
@@ -124,8 +137,17 @@ function drawGround() {
     ctx.fillRect(0, canvas.height - 10, canvas.width, 10);
 }
 
-function gameLoop() {
-    // Effacer l'écran, fond transparent
+function gameLoop(timestamp) {
+    if (!lastTime) lastTime = timestamp;
+    const deltaTime = timestamp - lastTime;
+    lastTime = timestamp;
+
+    // Normalize speed to 60 FPS (approx 16.67ms per frame)
+    // If deltaTime is 16.67, timeScale is 1.
+    // If deltaTime is 33.33 (30 FPS), timeScale is 2 (move twice as much per frame).
+    const timeScale = deltaTime / (1000 / 60);
+
+    // Clear screen
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     drawGround();
@@ -134,12 +156,13 @@ function gameLoop() {
     drawScore();
 
     if (!isGameOver && gameStarted) {
-        updateDino();
-        updateObstacles();
+        updateDino(timeScale);
+        updateObstacles(timeScale);
         checkCollision();
 
-        obstacleTimer++;
-        if (obstacleTimer > 90) {
+        // Timer also needs to be time-scaled to keep spawn rate consistent
+        obstacleTimer += timeScale;
+        if (obstacleTimer > OBSTACLE_INTERVAL_FRAMES) {
             spawnObstacle();
             obstacleTimer = 0;
         }
@@ -162,19 +185,7 @@ function gameLoop() {
     }
 }
 
-document.addEventListener("keydown", e => {
-    if (e.code === "Space") {
-        if (isGameOver) {
-            resetGame();
-        } else if (!gameStarted) {
-            resetGame();
-        } else {
-            jump();
-        }
-    }
-});
-
-canvas.addEventListener("touchstart", () => {
+function handleInput() {
     if (isGameOver) {
         resetGame();
     } else if (!gameStarted) {
@@ -182,6 +193,17 @@ canvas.addEventListener("touchstart", () => {
     } else {
         jump();
     }
+}
+
+document.addEventListener("keydown", e => {
+    if (e.code === "Space") {
+        handleInput();
+    }
+});
+
+canvas.addEventListener("touchstart", (e) => {
+    e.preventDefault(); // Prevent scrolling on mobile
+    handleInput();
 });
 
 function jump() {
@@ -191,6 +213,11 @@ function jump() {
     }
 }
 
-// On commence en attente d'appui
-resetGame(); // Initialise tout
-gameStarted = false; // On attend l'appui sur espace
+// Initialization of static state (waiting for start)
+gameStarted = false;
+drawGround();
+ctx.fillStyle = "white";
+ctx.font = "24px Arial";
+ctx.textAlign = "center";
+ctx.fillText("Press Space or tap the screen to start", canvas.width / 2, canvas.height / 2);
+
